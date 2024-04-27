@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='beDonor.css'>
+    <link rel="icon" href='./Images/bb_logo(black).png' type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <title>Blood Buddy - Find Donors</title>
+</head>
+<body>
+<header>
+    <nav>
+        <div class="header-logo"><img src="./Images/bb_logo(black).png"></div>
+        <div class="header-list">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a class="scroll" href="#about-us">About Us</a></li>
+                <li><a href="help.html" target="_blank">Get Help</a></li>
+                <li><a href="beadonor.html" target="_blank">Be A Donor</a></li> <!-- Changed tab name to "Be A Donor" -->
+                <li><a href="finddonors.html" target="_blank">Find Donors</a></li> <!-- Added Find Donors tab -->
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="inner">
+    <div class="photo">
+        <img src="./Images/regphoto.png">
+    </div>
+    <div class="user-form">
+        <h1>Find Blood Donors</h1>
+        <form id="searchForm">
+            <div class="input-container">
+                <i class="fas fa-user"></i>
+                <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
+            </div>
+            
+            <div class="input-container">
+                <i class="fas fa-calendar-alt"></i>
+                <input type="number" id="age" name="age" placeholder="Age" required>
+            </div>
+            
+            <div class="input-container">
+                <br>
+                <select id="gender" name="gender" required>
+                    <option value="" disabled selected>Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="input-container">
+                <br>
+                <select id="bloodType" name="bloodType" required>
+                    <option value="" disabled selected>Blood Type</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+            </div>
+            <br>
+            <button class="btn" type="submit">Search Donors</button>
+        </form>
+
+        <!-- Donor details container -->
+        <div class="donor-container" id="donorContainer"></div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+<script src="findDonors.js"></script>
+</body>
+</html>

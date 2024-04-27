@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='beDonor.css'>
+    <link rel="icon" href='./Images/bb_logo(black).png' type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <title>Blood Buddy - Be A Donor </title>
+</head>
+<body>
+<header>
+    <nav>
+        <div class="header-logo"><img src="./Images/bb_logo(black).png"></div>
+        <div class="header-list">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a class="scroll" href="#about-us">About Us</a></li>
+                <li><a href="help.html" target="_blank">Get Help</a></li>
+                <li><a href="beadonor.html" target="_blank">Be A Donor</a></li> <!-- Added Be A Donor tab -->
+                <li><a href="findDonors.html">Find Donors</a></li> <!-- Added Find Donors tab -->
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="inner">
+    <div class="photo">
+        <img src="./Images/regphoto.png">
+    </div>
+    <div class="user-form">
+        <h1>Register as a Blood Donor</h1>
+        <form>
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Full Name" id="full_name">
+            <br>
+            <i class="fas fa-calendar-alt"></i>
+            <input type="number" placeholder="Age" id="age">
+            <br>
+            <br>
+            
+            <i class="fas fa-venus-mars"></i>
+            <select id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <br>
+            <br>
+            <i class="fas fa-tint"></i>
+            <select id="blood_type">
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+            </select>
+            <br>
+            <br>
+            <i class="fas fa-mobile-alt"></i>
+            <input type="tel" placeholder="Mobile Number" id="mobile_number">
+            <br>
+           
+            <div class="action-btn">
+                <button class="btn primary" type="submit">Proceed</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="Login.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyBHXwlGz6J2SniqyH_9wHhYKPVRS526gc8",
+        authDomain: "register-d7937.firebaseapp.com",
+        databaseURL: "https://register-d7937-default-rtdb.firebaseio.com",
+        projectId: "register-d7937",
+        storageBucket: "register-d7937.appspot.com",
+        messagingSenderId: "390180645619",
+        appId: "1:390180645619:web:a6e2572a506646a91c6586",
+        measurementId: "G-3KGX47WBFF"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    // Get a reference to the Firestore database
+    const db = firebase.firestore();
+
+    // Select the registration form using its class name
+    const registrationForm = document.querySelector('.user-form form');
+
+    // Add an event listener to the form for form submission
+    registrationForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+        
+        // Get the user's registration details from the form inputs
+        const fullName = registrationForm.querySelector('#full_name').value;
+        const age = registrationForm.querySelector('#age').value;
+        const gender = registrationForm.querySelector('#gender').value;
+        const bloodType = registrationForm.querySelector('#blood_type').value;
+        const mobileNumber = registrationForm.querySelector('#mobile_number').value;
+
+        // Add the donor details to the "donors" collection in Firestore
+        db.collection("donors").add({
+            fullName: fullName,
+            age: age,
+            gender: gender,
+            bloodType: bloodType,
+            mobileNumber: mobileNumber
+        })
+        .then((docRef) => {
+            console.log("Donor registration successful with ID: ", docRef.id);
+            // Clear the form fields
+            registrationForm.reset();
+            // Show an alert message
+            alert('Thank you for registering as a donor!');
+        })
+        .catch((error) => {
+            console.error("Error adding donor: ", error);
+            // Handle any errors
+            // You can optionally show an error message to the user
+            alert('Error registering donor. Please try again later.');
+        });
+    });
+</script>
+</body>
+</html>

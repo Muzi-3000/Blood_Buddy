@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='Register.css'>
+    <link rel="icon" href='./Images/bb_logo(black).png' type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <title>Start Saving Lives</title>
+</head>
+<body>
+<header>
+    <nav>
+    <div class="header-logo"><img src="./Images/bb_logo(black).png"></div>
+    <div class="header-list">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a class="scroll" href="#about-us">About Us</a></li>
+            <li><a class="scroll" href="#vol-sect">Volunteer</a></li>
+            <li><a href="donate.html" target="_blank">Donate</a></li>
+            <li><a href="help.html" target="_blank">Get Help</a></li>
+        </ul>
+    </div>
+    </nav>
+</header>
+
+<div class="inner">
+    <div class="photo">
+        <img src="./Images/regphoto.png">
+    </div>
+    <div class="user-form">
+        <h1>Start Saving Lives</h1>
+        <form>
+            <i class="fas fa-user icon"></i>
+            <input type="text" placeholder="Name">
+            <br>
+            <i class="fas fa-envelope-square"></i>
+            <input type="email" placeholder="E-mail">
+            <br>
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Password" id="password_data">
+            <br>
+            <i class="fas fa-tint"></i>
+            <!-- Dropdown for Blood Type with same CSS class -->
+            <div class="dropdown">
+                <select class="dropdown-select" name="bloodType">
+                    <option value="" disabled selected hidden>Blood Type</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+            </div>
+            <br>
+            <i class="fas fa-birthday-cake"></i>
+            <input type="text" placeholder="Age">
+            <br>
+            <i class="fas fa-venus-mars"></i>
+            <select>
+                <option value="" disabled selected hidden>Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <br>
+            <i class="fas fa-phone"></i>
+            <input type="text" placeholder="Mobile No.">
+            
+            <div class="action-btn">
+                <button class="btn primary" type="submit">Create Account</button>
+            </div>
+        </form>
+        
+        <!-- Login Button -->
+        <div class="action-btn">
+            <button class="btn primary" id="loginButton">Login</button>
+        </div>
+    </div>
+</div>
+
+<script src="./Register.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyBHXwlGz6J2SniqyH_9wHhYKPVRS526gc8",
+        authDomain: "register-d7937.firebaseapp.com",
+        databaseURL: "https://register-d7937-default-rtdb.firebaseio.com",
+        projectId: "register-d7937",
+        storageBucket: "register-d7937.appspot.com",
+        messagingSenderId: "390180645619",
+        appId: "1:390180645619:web:a6e2572a506646a91c6586",
+        measurementId: "G-3KGX47WBFF"
+    };
+   
+    firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth();
+    const database = firebase.database();
+
+    // Redirect to login page when login button is clicked
+    document.getElementById("loginButton").addEventListener("click", function() {
+        window.location.href = "login.html"; // Replace with your login page URL
+    });
+</script>
+</body>
+</html>
